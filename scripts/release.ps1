@@ -221,7 +221,8 @@ $script:btbnAssets = $null
 function Get-BtbnAsset([string] $platform) {
     if ($null -eq $script:btbnAssets) {
         $headers = @{ 'User-Agent' = 'sprocket-release' }
-        if ($env:GITHUB_TOKEN) { $headers['Authorization'] = "Bearer $($env:GITHUB_TOKEN)" }
+        $apiToken = if ($env:GH_TOKEN) { $env:GH_TOKEN } else { $env:GITHUB_TOKEN }
+        if ($apiToken) { $headers['Authorization'] = "Bearer $apiToken" }
         $rel = Invoke-RestMethod -Headers $headers `
             -Uri 'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/tags/latest'
         $script:btbnAssets = $rel.assets
