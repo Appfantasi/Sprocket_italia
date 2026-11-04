@@ -1148,6 +1148,7 @@ public partial class MainWindow : Window
         bool updatePolicyChanged = updated.UpdateCheckEnabled != _userSettings.UpdateCheckEnabled;
         bool audioDeviceChanged = !string.Equals(updated.AudioOutputDevice, _userSettings.AudioOutputDevice, StringComparison.Ordinal);
         _userSettings = updated;
+        AppLocalization.Apply(this, updated.Language);
         UserSettingsFile.Save(updated);
 
         // Repoint the live master clock at the newly chosen device in place — seamless, no session rebuild, the
