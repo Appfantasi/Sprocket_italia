@@ -74,7 +74,8 @@ public sealed record UserSettings(
     bool LinuxDesktopIntegrationPrompted = false,
     string AudioOutputDevice = "",
     bool TimelineSnapping = true,
-    bool TimelineLinked = true)
+    bool TimelineLinked = true,
+    string Language = AppLocalization.Italian)
 {
     /// <summary>
     /// The plugin assemblies the user has disabled in the Plugin Manager (PLAN.md step 58), by full assembly
@@ -167,6 +168,7 @@ public static class UserSettingsStore
         StillImageDefaultSeconds = Math.Clamp(settings.StillImageDefaultSeconds, MinStillSeconds, MaxStillSeconds),
         TimelineAutoScroll = ParseAutoScroll(settings.TimelineAutoScroll).ToString(),
         AudioOutputDevice = settings.AudioOutputDevice ?? "",
+        Language = AppLocalization.Normalize(settings.Language),
         // Normalize null / empty to the canonical empty array (Array.Empty): the record's auto-equality compares
         // this list by reference, so collapsing every empty form to one shared instance keeps two settings that
         // differ only in "no plugins disabled" comparing equal (and a round-tripped default stays a default).
