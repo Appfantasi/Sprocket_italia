@@ -422,7 +422,7 @@
           <DockPanel>
             <Border DockPanel.Dock="Top" Classes="paneHeader">
               <Grid ColumnDefinitions="Auto,*">
-                <TextBlock Classes="title" Text="Project" />
+                <TextBlock x:Name="ProjectPanelTitle" Classes="title" Text="Project" />
                 <TextBlock x:Name="ProjectItemsText" Grid.Column="1" HorizontalAlignment="Right"
                            Foreground="{DynamicResource FaintText}" FontSize="{x:Static local:Typography.Caption}" VerticalAlignment="Center"
                            Text="0 items" />
@@ -624,7 +624,7 @@
           <DockPanel>
             <Border DockPanel.Dock="Top" Classes="paneHeader">
               <Grid ColumnDefinitions="*,Auto,Auto">
-                <TextBlock Classes="title" Text="Inspector" />
+                <TextBlock x:Name="InspectorPanelTitle" Classes="title" Text="Inspector" />
                 <!-- Matched to the section-header chevron spec (InspectorPanel.cs Section()): Chrome-tier
                      8px width, 1.2 stroke, FaintText. Height is aspect-true (the ChevronsDown/Up geometry is
                      10x12 → 8x9.6) because Uniform stretch pins the drawn glyph to the box's top-left rather
