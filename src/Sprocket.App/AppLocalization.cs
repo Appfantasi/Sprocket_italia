@@ -16,8 +16,11 @@ internal static class AppLocalization
 
     public static void Apply(Window window, string? language)
     {
-        if (Normalize(language) != Italian)
+        if (Normalize(language) == English)
+        {
+            ApplyEnglish(window);
             return;
+        }
 
         window.Title = "Sprocket";
         Set(window, "FileMenu", "_File");
