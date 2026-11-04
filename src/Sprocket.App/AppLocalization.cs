@@ -108,7 +108,14 @@ internal static class AppLocalization
         Menu(window, "SaveMenuItem", "_Save Project"); Menu(window, "SaveAsMenuItem", "Save Project _As…");
         Menu(window, "ImportMenuItem", "_Import Media…"); Menu(window, "RelinkMenuItem", "_Relink Media…");
         Menu(window, "ExportMenuItem", "_Export…"); Menu(window, "ExportQueueMenuItem", "Export _Queue…");
-        Menu(window, "ExitMenuItem", "E_xit"); Menu(window, "UndoMenuItem", "_Undo"); Menu(window, "RedoMenuItem", "_Redo");
+        Menu(window, "ExitMenuItem", "E_xit");
+        Menu(window, "ExportEdlMenuItem", "_EDL (CMX3600)…");
+        Menu(window, "ExportFcpXmlMenuItem", "_Final Cut XML…");
+        Menu(window, "ClipInsertMenuItem", "_Insert");
+        Menu(window, "InsertEditMenuItem", "Insert Ed_it  (,)");
+        Menu(window, "OverwriteEditMenuItem", "_Overwrite Edit  (.)");
+        Menu(window, "FitToFillMenuItem", "Fit to Fill");
+        Menu(window, "MarksMenuItem", "_In / Out"); Menu(window, "UndoMenuItem", "_Undo"); Menu(window, "RedoMenuItem", "_Redo");
         Menu(window, "CutMenuItem", "Cu_t"); Menu(window, "CopyMenuItem", "_Copy"); Menu(window, "PasteMenuItem", "_Paste");
         Menu(window, "DeleteMenuItem", "_Delete"); Menu(window, "RippleDeleteMenuItem", "_Ripple Delete");
         Menu(window, "SelectAllMenuItem", "Select _All"); Menu(window, "PreferencesMenuItem", "Pre_ferences…");
