@@ -217,7 +217,7 @@ internal static class PreferencesDialog
                             Spacing = 8,
                             Children =
                             {
-                                Section("Language / Lingua"),
+                                Section(T("Language", "Lingua")),
                                 Labeled(T("Interface language", "Lingua dell’interfaccia"), language),
 
                                 Section(T("Caches", "Cache")),
@@ -240,9 +240,7 @@ internal static class PreferencesDialog
 
                                 Section(T("Audio", "Audio")),
                                 Labeled(T("Output device", "Dispositivo di uscita"), audioDevice),
-                                Hint("Choose where playback is monitored. A change applies immediately without "
-                                    + "interrupting playback; if the chosen device is later unavailable, Sprocket "
-                                    + "uses the system default."),
+                                Hint(T("Choose where playback is monitored. A change applies immediately without interrupting playback; if the chosen device is later unavailable, Sprocket uses the system default.", "Scegli il dispositivo per ascoltare la riproduzione. La modifica si applica subito senza interrompere la riproduzione; se il dispositivo non è più disponibile, Sprocket usa quello predefinito del sistema.")),
 
                                 Section(T("Updates", "Aggiornamenti")),
                                 updatesEnabled,
