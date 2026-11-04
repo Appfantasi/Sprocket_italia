@@ -59,6 +59,17 @@ internal static class PreferencesDialog
             FontSize = Typography.Body,
         };
 
+        // ── Interface language ────────────────────────────────────────────────────────────────
+        var language = new ComboBox
+        {
+            ItemsSource = new[] { "Italiano", "English" },
+            SelectedIndex = AppLocalization.Normalize(current.Language) == AppLocalization.English ? 1 : 0,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Foreground = Palette.TextBrush,
+            Background = Palette.PanelBgBrush,
+            FontSize = Typography.Body,
+        };
+
         // ── Caches ──────────────────────────────────────────────────────────────────────────────
         var proxySizeText = Muted(PreferencesFormat.Bytes(proxyCacheSize()));
         var renderSizeText = Muted(PreferencesFormat.Bytes(renderCacheSize()));
@@ -204,6 +215,9 @@ internal static class PreferencesDialog
                             Spacing = 8,
                             Children =
                             {
+                                Section("Language / Lingua"),
+                                Labeled("Interface language", language),
+
                                 Section("Caches"),
                                 CacheRow("Proxy cache", proxySizeText, clearProxy),
                                 CacheRow("Render cache (this project)", renderSizeText, clearRender),
@@ -313,6 +327,7 @@ internal static class PreferencesDialog
             McpToken = token,
             UpdateCheckEnabled = updatesEnabled.IsChecked == true,
             AudioOutputDevice = deviceSpecs[audioDevice.SelectedIndex >= 0 ? audioDevice.SelectedIndex : 0],
+            Language = language.SelectedIndex == 1 ? AppLocalization.English : AppLocalization.Italian,
         }));
         cancel.Click += (_, _) => dialog.Close((UserSettings?)null);
 
