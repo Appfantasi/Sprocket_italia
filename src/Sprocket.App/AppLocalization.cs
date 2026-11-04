@@ -93,6 +93,11 @@ internal static class AppLocalization
         Content(window, "HandTool", "Mano"); Content(window, "ZoomTool", "Zoom");
         Content(window, "SnappingToggle", "Aggancio"); Content(window, "LinkedToggle", "Collegate");
         Content(window, "ExportButton", "Esporta");
+        Content(window, "ProgramTab", "Programma"); Content(window, "SourceTab", "Sorgente");
+        Content(window, "GuidesToggle", "Guide"); Content(window, "MarkersButton", "Marcatori");
+        Content(window, "AddTrackButton", "+ Traccia"); Content(window, "UpdateToastViewButton", "Visualizza");
+        Content(window, "UpdateToastDismissButton", "Chiudi");
+        Text(window, "ProjectPanelTitle", "Progetto"); Text(window, "InspectorPanelTitle", "Ispettore");
         Text(window, "ProjectTitleText", "Senza titolo"); Text(window, "SaveStateText", "• tutte le modifiche salvate");
         Text(window, "StatusText", "Pronto");
     }
@@ -160,6 +165,11 @@ internal static class AppLocalization
         Content(window, "HandTool", "Hand"); Content(window, "ZoomTool", "Zoom");
         Content(window, "SnappingToggle", "Snapping"); Content(window, "LinkedToggle", "Linked");
         Content(window, "ExportButton", "Export");
+        Content(window, "ProgramTab", "Program"); Content(window, "SourceTab", "Source");
+        Content(window, "GuidesToggle", "Guides"); Content(window, "MarkersButton", "Markers");
+        Content(window, "AddTrackButton", "+ Track"); Content(window, "UpdateToastViewButton", "View");
+        Content(window, "UpdateToastDismissButton", "Dismiss");
+        Text(window, "ProjectPanelTitle", "Project"); Text(window, "InspectorPanelTitle", "Inspector");
         Text(window, "ProjectTitleText", "Untitled"); Text(window, "SaveStateText", "• all changes saved");
         Text(window, "StatusText", "Ready");
     }
