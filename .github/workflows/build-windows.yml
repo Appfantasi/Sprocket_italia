@@ -1,0 +1,57 @@
+name: Windows installer (Italian build)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'Directory.Build.props'
+      - 'Sprocket.slnx'
+      - '.github/workflows/build-windows.yml'
+
+permissions:
+  contents: read
+
+env:
+  VPK_VERSION: '1.2.0'
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Cache FFmpeg downloads
+        uses: actions/cache@v4
+        with:
+          path: .ffmpeg-cache
+          key: ffmpeg-windows-${{ hashFiles('scripts/ffmpeg.lock.json') }}
+          restore-keys: ffmpeg-windows-
+
+      - name: Install Velopack CLI
+        run: dotnet tool install -g vpk --version ${{ env.VPK_VERSION }}
+
+      - name: Build Windows installer and portable archive
+        shell: pwsh
+        run: ./scripts/release.ps1 -NoBump -Rids win-x64 -Package velopack,zip
+
+      - name: Upload Windows packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sprocket-Italia-Windows
+          path: |
+            dist/velopack/win-x64/**
+            dist/Sprocket-*-win-x64.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
