@@ -264,7 +264,7 @@ internal static class PreferencesDialog
         {
             long size = proxyCacheSize();
             bool confirmed = await ConfirmDialog.Show(dialog, T("Clear Proxy Cache", "Svuota cache proxy"),
-                T($"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Proxies regenerate on demand; open projects may re-queue proxy builds.", $"Eliminare tutti i file proxy memorizzati?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. I proxy verranno rigenerati quando necessario; i progetti aperti potrebbero avviare nuovamente la creazione dei proxy."), T("Clear", "Svuota"), T("Cancel", "Annulla");
+                T($"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Proxies regenerate on demand; open projects may re-queue proxy builds.", $"Eliminare tutti i file proxy memorizzati?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. I proxy verranno rigenerati quando necessario; i progetti aperti potrebbero avviare nuovamente la creazione dei proxy."), T("Clear", "Svuota"), T("Cancel", "Annulla"));
             if (!confirmed)
                 return;
             clearProxyCache();
