@@ -34,6 +34,9 @@ internal static class PreferencesDialog
         Func<long> analysisCacheSize, Action clearAnalysisCache,
         IReadOnlyList<string> audioDevices)
     {
+        bool italian = AppLocalization.Normalize(current.Language) == AppLocalization.Italian;
+        string T(string english, string italianText) => italian ? italianText : english;
+
         // ── Audio output device ─────────────────────────────────────────────────────────────────
         // "System Default" ("" specifier) plus the enumerated devices. Keep the persisted device selectable even
         // when it isn't currently enumerated (unplugged) so leaving the dialog doesn't silently discard the choice.
@@ -185,7 +188,7 @@ internal static class PreferencesDialog
 
         var dialog = new Window
         {
-            Title = "Preferences",
+            Title = T("Preferences", "Preferenze"),
             Icon = AppIcon.Window,
             Width = 474,
             Height = 640,
@@ -218,12 +221,12 @@ internal static class PreferencesDialog
                                 Section("Language / Lingua"),
                                 Labeled("Interface language", language),
 
-                                Section("Caches"),
+                                Section(T("Caches", "Cache")),
                                 CacheRow("Proxy cache", proxySizeText, clearProxy),
                                 CacheRow("Render cache (this project)", renderSizeText, clearRender),
                                 CacheRow("Stabilization analysis cache", analysisSizeText, clearAnalysis),
 
-                                Section("Export metadata defaults"),
+                                Section(T("Export metadata defaults", "Metadati predefiniti per l’esportazione")),
                                 Labeled("Title", title),
                                 Labeled("Author", author),
                                 Labeled("Copyright", copyright),
@@ -232,23 +235,23 @@ internal static class PreferencesDialog
                                     + "Leave Comment blank and every export still carries “Created with Sprocket” "
                                     + "plus the Sprocket version."),
 
-                                Section("Autosave"),
+                                Section(T("Autosave", "Salvataggio automatico")),
                                 Labeled($"Interval (seconds, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})", autosave),
 
-                                Section("Import"),
+                                Section(T("Import", "Importazione")),
                                 Labeled("Still image default duration (seconds)", stillDuration),
 
-                                Section("Audio"),
+                                Section(T("Audio", "Audio")),
                                 Labeled("Output device", audioDevice),
                                 Hint("Choose where playback is monitored. A change applies immediately without "
                                     + "interrupting playback; if the chosen device is later unavailable, Sprocket "
                                     + "uses the system default."),
 
-                                Section("Updates"),
+                                Section(T("Updates", "Aggiornamenti")),
                                 updatesEnabled,
                                 updatesNote,
 
-                                Section("AI control (MCP)"),
+                                Section(T("AI control (MCP)", "Controllo AI (MCP)")),
                                 mcpEnabled,
                                 Labeled("Port", port),
                                 requireToken,
