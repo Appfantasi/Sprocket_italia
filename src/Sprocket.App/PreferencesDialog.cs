@@ -78,8 +78,8 @@ internal static class PreferencesDialog
         var renderSizeText = Muted(PreferencesFormat.Bytes(renderCacheSize()));
         var analysisSizeText = Muted(PreferencesFormat.Bytes(analysisCacheSize()));
         Button clearProxy = SmallButton(T("Clear", "Svuota"));
-        Button clearRender = SmallButton("Clear");
-        Button clearAnalysis = SmallButton("Clear");
+        Button clearRender = SmallButton(T("Clear", "Svuota"));
+        Button clearAnalysis = SmallButton(T("Clear", "Svuota"));
 
         // ── Export metadata defaults ────────────────────────────────────────────────────────────
         TextBox title = MakeText(current.ExportTitle);
@@ -264,7 +264,7 @@ internal static class PreferencesDialog
         {
             long size = proxyCacheSize();
             bool confirmed = await ConfirmDialog.Show(dialog, T("Clear Proxy Cache", "Svuota cache proxy"),
-                $T($"Eliminare tutti i file proxy memorizzati?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. I proxy verranno rigenerati quando necessario; i progetti aperti potrebbero avviare nuovamente la creazione dei proxy.", $"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Proxies regenerate on demand; open projects may re-queue proxy builds."), "Clear", "Cancel");
+                T($"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Proxies regenerate on demand; open projects may re-queue proxy builds.", $"Eliminare tutti i file proxy memorizzati?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. I proxy verranno rigenerati quando necessario; i progetti aperti potrebbero avviare nuovamente la creazione dei proxy."), T("Clear", "Svuota"), T("Cancel", "Annulla");
             if (!confirmed)
                 return;
             clearProxyCache();
@@ -275,8 +275,7 @@ internal static class PreferencesDialog
         {
             long size = analysisCacheSize();
             bool confirmed = await ConfirmDialog.Show(dialog, T("Clear Analysis Cache", "Svuota cache analisi"),
-                $"Delete all cached stabilization motion tracks?\n\nCurrently using {PreferencesFormat.Bytes(size)}. " +
-                "Stabilized clips re-analyze on demand; open projects may re-queue analyses.", "Clear", "Cancel");
+                T($"Delete all cached stabilization motion tracks?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Stabilized clips re-analyze on demand; open projects may re-queue analyses.", $"Eliminare tutte le analisi di stabilizzazione memorizzate?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. Le clip stabilizzate verranno analizzate nuovamente quando necessario."), T("Clear", "Svuota"), T("Cancel", "Annulla"));
             if (!confirmed)
                 return;
             clearAnalysisCache();
@@ -287,8 +286,7 @@ internal static class PreferencesDialog
         {
             long size = renderCacheSize();
             bool confirmed = await ConfirmDialog.Show(dialog, T("Delete Render Files", "Elimina file di rendering"),
-                $"Delete this project's preview render files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. " +
-                "Rendered previews rebuild when you render again.", "Delete", "Cancel");
+                T($"Delete this project's preview render files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Rendered previews rebuild when you render again.", $"Eliminare i file di anteprima del progetto?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. Le anteprime verranno ricreate al prossimo rendering."), T("Delete", "Elimina"), T("Cancel", "Annulla"));
             if (!confirmed)
                 return;
             clearRenderCache();
