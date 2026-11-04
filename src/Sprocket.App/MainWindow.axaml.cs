@@ -253,6 +253,7 @@ public partial class MainWindow : Window
         Stabilization.StabilizationService? stab = null, WindowPlacement? placement = null)
     {
         AvaloniaXamlLoader.Load(this);
+        AppLocalization.Apply(this, _userSettings.Language);
         _engine = engine;
         _project = project;
         _proxy = proxy;
