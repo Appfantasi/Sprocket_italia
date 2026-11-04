@@ -77,7 +77,7 @@ internal static class PreferencesDialog
         var proxySizeText = Muted(PreferencesFormat.Bytes(proxyCacheSize()));
         var renderSizeText = Muted(PreferencesFormat.Bytes(renderCacheSize()));
         var analysisSizeText = Muted(PreferencesFormat.Bytes(analysisCacheSize()));
-        Button clearProxy = SmallButton("Clear");
+        Button clearProxy = SmallButton(T("Clear", "Svuota"));
         Button clearRender = SmallButton("Clear");
         Button clearAnalysis = SmallButton("Clear");
 
@@ -101,7 +101,7 @@ internal static class PreferencesDialog
         // ── Updates (PLAN.md steps 36 + 45) ─────────────────────────────────────────────────────
         var updatesEnabled = new CheckBox
         {
-            Content = "Check for updates at startup",
+            Content = T("Check for updates at startup", "Controlla gli aggiornamenti all’avvio"),
             IsChecked = current.UpdateCheckEnabled,
             Foreground = Palette.TextBrush,
         };
@@ -118,7 +118,7 @@ internal static class PreferencesDialog
         string token = current.McpToken;
         var mcpEnabled = new CheckBox
         {
-            Content = "Enable MCP server (loopback only)",
+            Content = T("Enable MCP server (loopback only)", "Attiva il server MCP (solo connessioni locali)"),
             IsChecked = current.McpEnabled,
             Foreground = Palette.TextBrush,
         };
@@ -127,7 +127,7 @@ internal static class PreferencesDialog
         port.HorizontalAlignment = HorizontalAlignment.Left;
         var requireToken = new CheckBox
         {
-            Content = "Require bearer token",
+            Content = T("Require bearer token", "Richiedi token di autenticazione"),
             IsChecked = current.McpRequireToken,
             Foreground = Palette.TextBrush,
         };
@@ -140,7 +140,7 @@ internal static class PreferencesDialog
             Foreground = Palette.MutedTextBrush,
             Background = Palette.PanelBgBrush,
         };
-        Button copySetup = SmallButton("Copy setup command");
+        Button copySetup = SmallButton(T("Copy setup command", "Copia comando di configurazione"));
         var mcpWarning = new TextBlock
         {
             Text = "While enabled, a local AI client can inspect and edit the open project.",
@@ -179,7 +179,7 @@ internal static class PreferencesDialog
         };
         var cancel = new Button
         {
-            Content = "Cancel",
+            Content = T("Cancel", "Annulla"),
             Padding = new Thickness(16, 5),
             Foreground = Palette.TextBrush,
             Background = Palette.PanelBgBrush,
@@ -219,30 +219,30 @@ internal static class PreferencesDialog
                             Children =
                             {
                                 Section("Language / Lingua"),
-                                Labeled("Interface language", language),
+                                Labeled(T("Interface language", "Lingua dell’interfaccia"), language),
 
                                 Section(T("Caches", "Cache")),
-                                CacheRow("Proxy cache", proxySizeText, clearProxy),
-                                CacheRow("Render cache (this project)", renderSizeText, clearRender),
-                                CacheRow("Stabilization analysis cache", analysisSizeText, clearAnalysis),
+                                CacheRow(T("Proxy cache", "Cache proxy"), proxySizeText, clearProxy),
+                                CacheRow(T("Render cache (this project)", "Cache render (questo progetto)"), renderSizeText, clearRender),
+                                CacheRow(T("Stabilization analysis cache", "Cache analisi stabilizzazione"), analysisSizeText, clearAnalysis),
 
                                 Section(T("Export metadata defaults", "Metadati predefiniti per l’esportazione")),
-                                Labeled("Title", title),
-                                Labeled("Author", author),
-                                Labeled("Copyright", copyright),
-                                Labeled("Comment", comment),
+                                Labeled(T("Title", "Titolo"), title),
+                                Labeled(T("Author", "Autore"), author),
+                                Labeled(T("Copyright", "Copyright"), copyright),
+                                Labeled(T("Comment", "Commento"), comment),
                                 Hint("Tokens {project}, {username}, {year} and {date} are replaced when you export. "
                                     + "Leave Comment blank and every export still carries “Created with Sprocket” "
                                     + "plus the Sprocket version."),
 
                                 Section(T("Autosave", "Salvataggio automatico")),
-                                Labeled($"Interval (seconds, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})", autosave),
+                                Labeled(T($"Interval (seconds, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})", $"Intervallo (secondi, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})"), autosave),
 
                                 Section(T("Import", "Importazione")),
-                                Labeled("Still image default duration (seconds)", stillDuration),
+                                Labeled(T("Still image default duration (seconds)", "Durata predefinita immagini fisse (secondi)"), stillDuration),
 
                                 Section(T("Audio", "Audio")),
-                                Labeled("Output device", audioDevice),
+                                Labeled(T("Output device", "Dispositivo di uscita"), audioDevice),
                                 Hint("Choose where playback is monitored. A change applies immediately without "
                                     + "interrupting playback; if the chosen device is later unavailable, Sprocket "
                                     + "uses the system default."),
@@ -253,7 +253,7 @@ internal static class PreferencesDialog
 
                                 Section(T("AI control (MCP)", "Controllo AI (MCP)")),
                                 mcpEnabled,
-                                Labeled("Port", port),
+                                Labeled(T("Port", "Porta"), port),
                                 requireToken,
                                 tokenText,
                                 copySetup,
