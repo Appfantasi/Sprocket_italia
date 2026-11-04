@@ -107,8 +107,7 @@ internal static class PreferencesDialog
         };
         var updatesNote = new TextBlock
         {
-            Text = "Sprocket tells you when a newer build is published; nothing downloads or installs " +
-                   "without your say-so. Portable builds are pointed at the releases page instead.",
+            Text = T("Sprocket tells you when a newer build is published; nothing downloads or installs without your say-so. Portable builds are pointed at the releases page instead.", "Sprocket ti avvisa quando è disponibile una nuova versione; non scarica né installa nulla senza il tuo consenso. Le versioni portatili rimandano alla pagina delle release."),
             Foreground = Palette.MutedTextBrush,
             FontSize = Typography.Caption,
             TextWrapping = TextWrapping.Wrap,
@@ -143,7 +142,7 @@ internal static class PreferencesDialog
         Button copySetup = SmallButton(T("Copy setup command", "Copia comando di configurazione"));
         var mcpWarning = new TextBlock
         {
-            Text = "While enabled, a local AI client can inspect and edit the open project.",
+            Text = T("While enabled, a local AI client can inspect and edit the open project.", "Quando è attivo, un client AI locale può esaminare e modificare il progetto aperto."),
             Foreground = Palette.MutedTextBrush,
             FontSize = Typography.Caption,
             TextWrapping = TextWrapping.Wrap,
@@ -231,9 +230,7 @@ internal static class PreferencesDialog
                                 Labeled(T("Author", "Autore"), author),
                                 Labeled(T("Copyright", "Copyright"), copyright),
                                 Labeled(T("Comment", "Commento"), comment),
-                                Hint("Tokens {project}, {username}, {year} and {date} are replaced when you export. "
-                                    + "Leave Comment blank and every export still carries “Created with Sprocket” "
-                                    + "plus the Sprocket version."),
+                                Hint(T("Tokens {project}, {username}, {year} and {date} are replaced when you export. Leave Comment blank and every export still carries “Created with Sprocket” plus the Sprocket version.", "I segnaposto {project}, {username}, {year} e {date} vengono sostituiti durante l’esportazione. Se lasci vuoto il commento, ogni esportazione includerà comunque “Creato con Sprocket” e la versione del programma.")),
 
                                 Section(T("Autosave", "Salvataggio automatico")),
                                 Labeled(T($"Interval (seconds, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})", $"Intervallo (secondi, {UserSettingsStore.MinAutosaveSeconds}–{UserSettingsStore.MaxAutosaveSeconds})"), autosave),
@@ -268,9 +265,8 @@ internal static class PreferencesDialog
         clearProxy.Click += async (_, _) =>
         {
             long size = proxyCacheSize();
-            bool confirmed = await ConfirmDialog.Show(dialog, "Clear Proxy Cache",
-                $"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. " +
-                "Proxies regenerate on demand; open projects may re-queue proxy builds.", "Clear", "Cancel");
+            bool confirmed = await ConfirmDialog.Show(dialog, T("Clear Proxy Cache", "Svuota cache proxy"),
+                $T($"Eliminare tutti i file proxy memorizzati?\n\nSpazio attualmente utilizzato: {PreferencesFormat.Bytes(size)}. I proxy verranno rigenerati quando necessario; i progetti aperti potrebbero avviare nuovamente la creazione dei proxy.", $"Delete all cached proxy files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. Proxies regenerate on demand; open projects may re-queue proxy builds."), "Clear", "Cancel");
             if (!confirmed)
                 return;
             clearProxyCache();
@@ -280,7 +276,7 @@ internal static class PreferencesDialog
         clearAnalysis.Click += async (_, _) =>
         {
             long size = analysisCacheSize();
-            bool confirmed = await ConfirmDialog.Show(dialog, "Clear Analysis Cache",
+            bool confirmed = await ConfirmDialog.Show(dialog, T("Clear Analysis Cache", "Svuota cache analisi"),
                 $"Delete all cached stabilization motion tracks?\n\nCurrently using {PreferencesFormat.Bytes(size)}. " +
                 "Stabilized clips re-analyze on demand; open projects may re-queue analyses.", "Clear", "Cancel");
             if (!confirmed)
@@ -292,7 +288,7 @@ internal static class PreferencesDialog
         clearRender.Click += async (_, _) =>
         {
             long size = renderCacheSize();
-            bool confirmed = await ConfirmDialog.Show(dialog, "Delete Render Files",
+            bool confirmed = await ConfirmDialog.Show(dialog, T("Delete Render Files", "Elimina file di rendering"),
                 $"Delete this project's preview render files?\n\nCurrently using {PreferencesFormat.Bytes(size)}. " +
                 "Rendered previews rebuild when you render again.", "Delete", "Cancel");
             if (!confirmed)
