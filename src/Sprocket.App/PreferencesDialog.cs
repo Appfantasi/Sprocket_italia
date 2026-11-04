@@ -40,7 +40,7 @@ internal static class PreferencesDialog
         // ── Audio output device ─────────────────────────────────────────────────────────────────
         // "System Default" ("" specifier) plus the enumerated devices. Keep the persisted device selectable even
         // when it isn't currently enumerated (unplugged) so leaving the dialog doesn't silently discard the choice.
-        var deviceLabels = new List<string> { "System Default" };
+        var deviceLabels = new List<string> { T("System Default", "Predefinito di sistema") };
         var deviceSpecs = new List<string> { "" };
         foreach (string d in audioDevices)
         {
@@ -49,7 +49,7 @@ internal static class PreferencesDialog
         }
         if (current.AudioOutputDevice.Length > 0 && !deviceSpecs.Contains(current.AudioOutputDevice))
         {
-            deviceLabels.Add($"{current.AudioOutputDevice} (not connected)");
+            deviceLabels.Add($"{current.AudioOutputDevice} ({T("not connected", "non connesso")})");
             deviceSpecs.Add(current.AudioOutputDevice);
         }
         var audioDevice = new ComboBox
